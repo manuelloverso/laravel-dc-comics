@@ -1,1 +1,6 @@
-@import '~bootstrap/scss/bootstrap';
+@use "partials/header";
+@use "partials/footer";
+@use "partials/comic-page";
+@use "partials/main";
+
+@import "~bootstrap/scss/bootstrap";

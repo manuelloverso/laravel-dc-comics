@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container text-white">
         <h1>Add a new Comic book</h1>
         <form action="{{ route('comics.store') }}" method="post">
             @csrf {{-- this is a laravel directive to protect your application from cross-site request forgery --}}

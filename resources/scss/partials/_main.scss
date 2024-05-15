@@ -1,0 +1,17 @@
+$dark-bg: #212529;
+
+main {
+    background-color: $dark-bg;
+    padding: 3rem 0;
+
+    .card {
+        background-color: transparent;
+        img {
+            height: 400px;
+        }
+
+        .title {
+            height: 65px;
+        }
+    }
+}
