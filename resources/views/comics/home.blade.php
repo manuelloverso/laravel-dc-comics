@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="container">
+        <div class="add-button">
+            <a class="btn btn-primary" href="{{ route('comics.create') }}">Add</a>
+        </div>
         <div class="row">
             @foreach ($comics as $comic)
                 <div class="col-4">

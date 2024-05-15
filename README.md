@@ -90,3 +90,15 @@ Route::resource('/comics', ComicController::class);
 
 -   the views\comics folder should now have home and show files
 -   you can show the single item in the show file as it was passed by the show method in the controller
+-   add a button in the home page to add an item
+
+```html
+<a class="btn btn-primary" href="{{ route('comics.create') }}">Add</a>
+```
+
+-   update the create method in the controller file. It should only return the comics.create view
+-   add a form in the create view to fill and post the item you want to push to the db , the form action should point to the store route
+
+```html
+<form action="{{ route('comics.store') }}" method="post"></form>
+```
