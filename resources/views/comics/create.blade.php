@@ -34,7 +34,7 @@
             {{-- sale_date imput --}}
             <div class="mb-3">
                 <label for="sale_date" class="form-label">Sale Date</label>
-                <input type="text" name="sale_date" id="sale_date" class="form-control"
+                <input type="date" name="sale_date" id="sale_date" class="form-control"
                     placeholder="add the sale date" />
             </div>
 

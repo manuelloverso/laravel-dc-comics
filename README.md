@@ -102,3 +102,29 @@ Route::resource('/comics', ComicController::class);
 ```html
 <form action="{{ route('comics.store') }}" method="post"></form>
 ```
+
+-   update the store method in the controller
+
+```php
+public function store(Request $request)
+    {
+        //dd($request->all());
+
+        Comic::create($request->all());
+
+        //redirect
+
+        return to_route('comics.index');
+    }
+```
+
+-   update the Comic Model in orther to exclude the \_token field when submitting the data into the db
+
+```php
+class Comic extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['title', 'description', 'thumb', 'price', 'series', 'sale_date', 'type'];
+}
+```
