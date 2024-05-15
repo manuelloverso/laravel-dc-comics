@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Comic;
 use Illuminate\Support\Facades\Route;
 
 /*
