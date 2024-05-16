@@ -8,5 +8,8 @@
         <p><strong>Price: </strong>{{ $comic->price }}</p>
         <p><strong>Release Date: </strong>{{ $comic->sale_date }}</p>
         <p>{{ $comic->description }}</p>
+        <a class="btn btn-primary" href="{{ route('comics.index') }}">Back</a>
+        <a class="btn btn-primary" href="{{ route('comics.edit', $comic) }}">Edit</a>
+        @include('partials.delete-modal')
     </div>
 @endsection
