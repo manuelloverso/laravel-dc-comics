@@ -5,9 +5,9 @@
         @include('partials.validate-errors')
 
         <h1>Edit '{{ $comic->title }}'</h1>
-        <form action="{{ route('comics.store') }}" method="post">
+        <form action="{{ route('comics.update', $comic) }}" method="post">
             @csrf {{-- this is a laravel directive to protect your application from cross-site request forgery --}}
-
+            @method('PUT')
             {{-- title input --}}
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
