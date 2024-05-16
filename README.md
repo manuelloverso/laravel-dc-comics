@@ -256,3 +256,12 @@ class="@error('title') is-invalid @enderror"
 ```html
 value="{{old('title')}}"
 ```
+
+-   do the same for the edit page (can just create a partial)
+
+-   in the edit page the old method for input values differs. Here you have to show the last value inserted if the validation returned errors, or , if there were no errors in the specific input, the original value that the comic had initially.
+
+```html
+value="{{old('title', $pasta->title)}}"
+<!-- the second value is the original title -->
+```
