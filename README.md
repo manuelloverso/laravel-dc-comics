@@ -1,6 +1,6 @@
-## Steps
+# Steps
 
-### CRUD
+## CRUD
 
 -   add the file that the seeder will use to fill the database
 -   create model, migration, controller, seeder, resource with the artisan command
@@ -189,4 +189,70 @@ class Comic extends Model
     }
 ```
 
-### VALIDATION
+## VALIDATION
+
+-   change the store method in the controller so that it validates the data received from the form in the create route, then do it to validate the edit form as well
+
+```php
+public function store(Request $request)
+    {
+        //dd($request->all());
+
+        //Comic::create($request->all());
+
+        $val_data = $request->validate([
+            'title' => 'required|min:2|max:100',
+            'description' => 'nullable|max:500',
+            'thumb' => 'nullable|max:255',
+            'price' => 'nullable|max:15',
+            'series' => 'nullable|max:100',
+            'sale_date' => 'nullable|date',
+            'type' => 'nullable|max:50',
+        ]);
+
+        Comic::create($val_data);
+
+        //redirect
+
+        return to_route('comics.index');
+    }
+```
+
+-   here is the validation rules laravel offers -> https://laravel.com/docs/10.x/validation#available-validation-rules
+
+-   now show the validation errors in the page when the user fails to submit the form
+
+-   the snippet below will show an alert containing a list of errors
+
+```html
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+```
+
+-   add this in the input tags to add the invalid class if there was an error in the compilation
+
+```html
+class="@error('title') is-invalid @enderror"
+<!-- title here refers to the input name -->
+```
+
+-   show an error message for the single input too
+
+```html
+@error('title')
+<div class="text-danger">{{ $message }}</div>
+@enderror
+```
+
+-   you dont want users to lose their input values after the form is refreshed if the validation returned some errors, use this
+
+```html
+value="{{old('title')}}"
+```
