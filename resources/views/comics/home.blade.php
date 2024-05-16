@@ -61,6 +61,7 @@
                     </div>
                 </div>
             @endforeach
+            {{ $comics->links() }}
         </div>
     </div>
 @endsection
