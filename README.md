@@ -1,5 +1,7 @@
 ## Steps
 
+### CRUD
+
 -   add the file that the seeder will use to fill the database
 -   create model, migration, controller, seeder, resource with the artisan command
 -   fill the create-table migration with the right columns
@@ -129,4 +131,62 @@ class Comic extends Model
 }
 ```
 
--   time to add some style 🥲
+-   add the edit button in the html to redirect to the edit page
+
+```html
+<a class="btn btn-primary" href="{{ route('comics.edit', $comic) }}">Edit</a>
+```
+
+-   add the form in the edit page with the method 'PUT' using the blade directive
+
+```html
+<form action="{{ route('comics.update', $comic) }}" method="post">
+    @method('PUT')
+</form>
+```
+
+-   update the edit and the update methods in the controller
+
+```php
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Comic $comic)
+    {
+        return view('comics.edit', compact('comic'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Comic $comic)
+    {
+        //dd($request->all());
+        $comic->update($request->all());
+        return to_route('comics.show', $comic); //passing the $comic variable just because the show rout needs the single item
+    }
+```
+
+-   add a button or a modal to trigger the destroy method for deleting the single item
+
+```html
+<form action="{{ route('comics.destroy', $comic) }}" method="post">
+    @csrf @method('DELETE')
+    <button type="submit" class="btn btn-danger">Confirm</button>
+</form>
+```
+
+-   update the destroy method in the controller
+
+```php
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Comic $comic)
+    {
+        $comic->delete();
+        return to_route('comics.index');
+    }
+```
+
+### VALIDATION

@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container text-white">
+        @include('partials.validate-errors')
         <h1>Add a new Comic book</h1>
         <form action="{{ route('comics.store') }}" method="post">
             @csrf {{-- this is a laravel directive to protect your application from cross-site request forgery --}}
