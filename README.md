@@ -265,3 +265,53 @@ value="{{old('title')}}"
 value="{{old('title', $pasta->title)}}"
 <!-- the second value is the original title -->
 ```
+
+### Form Request Validation
+
+-   create the request files with artisan for both methods store and update
+
+```bash
+php artisan make:request StoreComicRequest
+php artisan make:request UpdateComicRequest
+```
+
+-   move the validation rules to these files so that we keep clean the controller's methods
+
+```php
+    public function rules(): array
+    {
+        return [
+            'title' => 'required|min:2|max:100',
+            'description' => 'nullable|max:1000',
+            'thumb' => 'nullable|max:255',
+            'price' => 'nullable|max:15',
+            'series' => 'nullable|max:100',
+            'sale_date' => 'nullable|date',
+            'type' => 'nullable|max:50',
+        ];
+    }
+```
+
+-   now we update the controller changing the class from Request to StoreComicRequest (or Update for update method) and validate() to validated()
+
+```php
+public function store(StoreComicRequest $request)
+    {
+        //dd($request->all());
+
+        //Comic::create($request->all());
+
+        $val_data = $request->validated();
+
+        Comic::create($val_data);
+
+        //redirect
+
+
+        return to_route('comics.index');
+    }
+```
+
+-   do the same for update method
+
+TODO: return the show view once created the new item , do what fabio was saying about unique
